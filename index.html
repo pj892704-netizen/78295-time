@@ -1,1 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Weed Design Gallery</title>
+<style>
+  body {
+    margin: 0;
+    background-color: black;
+    color: skyblue;
+    font-family: 'Times New Roman', serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .main-images {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin: 40px 0;
+  }
+  .image-block {
+    text-align: center;
+    max-width: 200px;
+  }
+  .image-block img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    border: 2px solid skyblue;
+    border-radius: 8px;
+  }
+  .image-block p {
+    margin-top: 12px;
+    font-size: 18px;
+  }
 
+  /* Carousel Styles */
+  .carousel-container {
+    width: 80%;
+    max-width: 800px;
+    overflow: hidden;
+    border: 2px solid skyblue;
+    border-radius: 10px;
+    margin-bottom: 40px;
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .carousel-track img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    margin: 10px;
+    border: 1px solid skyblue;
+    border-radius: 5px;
+  }
+  .carousel-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  button {
+    background-color: skyblue;
+    border: none;
+    color: black;
+    padding: 10px 20px;
+    font-family: 'Times New Roman', serif;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #87ceeb;
+  }
+</style>
+</head>
+<body>
+
+<div class="main-images">
+  <div class="image-block">
+    <img src="pexels-pixabay-163077.jpg
+" alt="Image 1" />
+    <p>I love playing games like super smach bros.</p>
+  </div>
+  <div class="image-block">
+    <img src="pexels-yuraforrat-13345751.jpg
+" alt="Image 2" />
+    <p>I love playing sports like football.</p>
+  </div>
+  <div class="image-block">
+    <img src="pexels-diva-plavalaguna-6150432.jpg
+" alt="Image 3" />
+    <p>I dislike talking to people.</p>
+  </div>
+</div>
+
+<div class="carousel-container">
+  <div class="carousel-track" id="carousel-track">
+    <img src="pexels-yuraforrat-13345751.jpg" alt="More 1" />
+    <img src="pexels-football-wife-577822-1618252.jpg
+" alt="More 2" />
+    <img src="pexels-pixabay-163077.jpg
+" alt="More 3" />
+    <img src="pexels-suki-lee-110686949-14823950.jpg
+" alt="More 4" />
+    <img src="pexels-august-de-richelieu-4427815.jpg
+" alt="More 5" />
+    <img src="pexels-diva-plavalaguna-6150432.jpg
+" alt="More 6" />
+  </div>
+</div>
+
+<div class="carousel-buttons">
+  <button id="prev-btn">&lt; Prev</button>
+  <button id="next-btn">Next &gt;</button>
+</div>
+
+<script>
+  const track = document.getElementById('carousel-track');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  const itemWidth = 170; // image width + margin (150 + 20)
+  let position = 0;
+
+  prevBtn.addEventListener('click', () => {
+    if (position < 0) {
+      position += itemWidth;
+      track.style.transform = `translateX(${position}px)`;
+    }
+  });
+
+  nextBtn.addEventListener('click', () => {
+    // Max scroll left is total width - visible width
+    const maxPosition = -(track.scrollWidth - track.parentElement.clientWidth);
+    if (position > maxPosition) {
+      position -= itemWidth;
+      track.style.transform = `translateX(${position}px)`;
+    }
+  });
+</script>
+
+</body>
+</html>
